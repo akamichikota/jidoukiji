@@ -1,0 +1,30 @@
+<!--base.html-->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <!-- スタイルシートやJavaScriptのリンク -->
+</head>
+<body>
+    <header>
+        <!-- ヘッダーコンテンツ -->
+    </header>
+
+    <nav>
+        <!-- ナビゲーションバー -->
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- メインコンテンツ -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- フッターコンテンツ -->
+    </footer>
+</body>
+</html>

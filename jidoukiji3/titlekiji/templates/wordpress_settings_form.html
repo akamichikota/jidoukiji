@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+
+<div class="container">
+    <h2>WordPress設定</h2>
+    <form method="post" action="{% url 'wordpress_settings' %}" class="settings-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_wordpress_username">ユーザー名:</label>
+            <input type="text" id="id_wordpress_username" name="wordpress_username" required class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="id_wordpress_password">パスワード:</label>
+            <input type="password" id="id_wordpress_password" name="wordpress_password" required class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="id_wordpress_url">サイトURL:</label>
+            <input type="url" id="id_wordpress_url" name="wordpress_url" required class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+    <!-- ページ間のナビゲーションリンク -->
+    <a href="{% url 'titlekiji_form' %}" class="nav-link">トップページへ</a>
+
+    <div class="container">
+        <h3>パスワード</h3>
+        <div class="passwords-container"> <!-- コンテナを追加しました -->
+            <div class="password-entry">
+                <h4>プレジ</h4>
+                <p id="password-1">ArN1 ZrV0 F6g5 cyY8 CY9G O8Ft</p>
+                <button onclick="copyToClipboard('#password-1')">コピー</button>
+            </div>
+            <div class="password-entry">
+                <h4>ラク　</h4>
+                <p id="password-2">1ItA Or8a nFbp R2pQ r012 YIBU</p>
+                <button onclick="copyToClipboard('#password-2')">コピー</button>
+            </div>
+            <div class="password-entry">
+                <h4>オール</h4>
+                <p id="password-3">Wmc7 ETDq CSvR dD06 3nB9 Ap0q</p>
+                <button onclick="copyToClipboard('#password-3')">コピー</button>
+            </div>
+            <div class="password-entry">
+                <h4>はなび</h4>
+                <p id="password-4">ClX2 yW3a A2s1 UODg zQoX RiDy</p>
+                <button onclick="copyToClipboard('#password-4')">コピー</button>
+            </div>
+            <div class="password-entry">
+                <h4>まつり</h4>
+                <p id="password-5">BlF1 22pY sB4R 4SQ0 mKFQ Uw4f</p>
+                <button onclick="copyToClipboard('#password-5')">コピー</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyToClipboard(selector) {
+    var text = document.querySelector(selector).textContent.trim();
+    navigator.clipboard.writeText(text).then(function() {
+        // コピー成功時のメッセージ表示
+        var message = document.createElement('div');
+        message.textContent = 'コピーしました!';
+        message.className = 'copy-success-message';
+        document.body.appendChild(message);
+
+        // しばらくしてからメッセージを消去
+        setTimeout(function() {
+            document.body.removeChild(message);
+        }, 2000);
+    }, function(err) {
+        console.error('コピーに失敗しました。', err);
+    });
+}
+
+</script>
+{% endblock %}

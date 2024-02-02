@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <title>Generate Articles</title>
+</head>
+<body>
+    <h1>タイトル記事生成</h1>
+    <div class="container">
+        <a href="https://chat.openai.com/g/g-ocMlURs1C-ji-shi-taitorusheng-cheng" target="_blank" class="ai-generator-link">記事タイトル生成AIはこちら</a>
+        <form id="article-form" method="post">
+            {% csrf_token %}
+            <label for="title-keyword-pairs">タイトルとキーワードを入力（例：タイトル1 - キーワード1, キーワード2）</label>
+            <textarea id="title-keyword-pairs" name="title_keyword_pairs" rows="6" required></textarea>
+
+            <div class="flex-container">
+                <div class="settings-container flex-item">
+                    <a href="{% url 'settings_form' %}" class="settings-link">設定ページへ</a>
+                </div>
+                
+                <div class="button-container flex-item">
+                    <input type="submit" id="submit-button" value="記事生成">
+                </div>
+
+                <div class="status-container flex-item">
+                    <select id="post-status" name="post_status" class="status-selector">
+                        <option value="draft">下書き</option>
+                        <option value="publish">公開</option>                 
+                    </select>
+                </div>
+            </div>
+
+            <div id="article-result">
+                <!-- Results will be displayed here -->
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
